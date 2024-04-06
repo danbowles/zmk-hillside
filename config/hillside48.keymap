@@ -71,10 +71,10 @@
  * ----------------|       |-------|       |       |       |       |---|       |       |       |       |-------|       |----------------
  */
                         bindings = <
-&trans &trans &trans &trans &trans &trans                                   &trans &kp HOME          &kp UP              &kp END   &kp DEL  &trans
-&trans &trans &trans &trans &trans &trans                                   &trans &kp LEFT          &kp DOWN            &kp RIGHT &trans   &trans
-&trans &trans &trans &trans &trans &trans &trans                     &trans &trans &kp LC(LG(LEFT))  &kp LC(LG(RIGHT))   &trans    &kp BSLH &trans
-              &trans        &trans &trans &trans &trans       &trans &trans &trans &trans            &trans   
+&trans &trans &trans &trans &trans &trans                                   &trans    &kp HOME          &trans            &kp END   &kp DEL  &trans
+&trans &trans &trans &trans &trans &trans                                   &kp LEFT  &kp DOWN          &kp UP            &kp RIGHT &trans   &trans
+&trans &trans &trans &trans &trans &trans &trans                     &trans &trans    &kp LC(LG(LEFT))  &kp LC(LG(RIGHT)) &trans    &kp BSLH &trans
+              &trans        &trans &trans &trans &trans       &trans &trans &trans    &trans            &trans   
                         >;
                 };
 		
