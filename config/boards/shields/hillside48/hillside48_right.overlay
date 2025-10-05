@@ -6,6 +6,7 @@
 
 #include "hillside48.dtsi"
 #include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
 
 
 &default_transform {
