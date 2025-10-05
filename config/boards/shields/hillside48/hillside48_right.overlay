@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "hillside48.dtsi" 
+#include "hillside48.dtsi"
+#include <dt-bindings/zmk/input_transform.h>
+
 
 &default_transform {
     col-offset = <6>;
@@ -24,3 +26,38 @@
 &right_encoder {
     status = "okay";
 };
+
+/* === Pimoroni PIM447 on I²C (default address 0x0A) ===
+ * If this doesn't probe, change &i2c0 -> &i2c1 and rebuild.
+ */
+&i2c0 {
+    status = "okay";
+
+    trackball_pim447: trackball@0a {
+        compatible = "pimoroni,trackball_pim447";
+        reg = <0x0A>;
+        label = "PIM447";
+
+        /* Tuning — start conservative; we can adjust after first flash */
+        sensitivity = <64>;     /* device internal sensitivity (0–255 typical) */
+        move-factor = <2>;      /* multiplies X/Y motion */
+        scroll-factor = <1>;    /* used by XY->scroll mapper if you enable it */
+
+        /* Uncomment if your physical mounting ends up mirrored:
+         * invert-x;
+         * invert-y;
+         */
+
+        /* Optional: onboard RGB control (keep off at first)
+         * led-red = <0>; led-green = <0>; led-blue = <0>;
+         */
+    };
+}
+
+/* === Listener: connects the device into ZMK's pointer pipeline === */
+&{/} {
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_pim447>;
+    };
+}
