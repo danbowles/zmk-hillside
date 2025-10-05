@@ -32,13 +32,14 @@
 /* === Pimoroni PIM447 on I²C (default address 0x0A) ===
  * If this doesn't probe, change &i2c0 -> &i2c1 and rebuild.
  */
-&i2c1 {
+&i2c0 {
     status = "okay";
 
     trackball_pim447: trackball@0a {
         compatible = "pimoroni,trackball_pim447";
         reg = <0x0A>;
         label = "PIM447";
+        led-red = <64>; led-green = <0>; led-blue = <0>;  // init LED proof
 
         /* Tuning — start conservative; we can adjust after first flash */
         sensitivity = <64>;     /* device internal sensitivity (0–255 typical) */
