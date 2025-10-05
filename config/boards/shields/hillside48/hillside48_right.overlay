@@ -55,7 +55,7 @@
 }
 
 /* === Listener: connects the device into ZMK's pointer pipeline === */
-&{/} {
+/ {
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_pim447>;

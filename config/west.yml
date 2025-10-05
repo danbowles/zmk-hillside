@@ -8,8 +8,10 @@ manifest:
       revision: main
       import: app/west.yml
     - name: pim447
-      url: https://github.com/mwandzik/zmk-driver-pim447
-      revision: master
+      # url: https://github.com/mwandzik/zmk-driver-pim447
+      # revision: master
+      url: https://github.com/t0bybr/pim447
+      revision: main
       path: modules/pim447
   self:
     path: config
