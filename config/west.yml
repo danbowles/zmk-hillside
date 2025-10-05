@@ -9,6 +9,6 @@ manifest:
       import: app/west.yml
     - name: pim447
       url: https://github.com/mwandzik/zmk-driver-pim447
-      revision: main
+      revision: master
   self:
     path: config
