@@ -1,4 +1,3 @@
-// Minimal overlay to prove PIM447 works on i2c0
 #include "hillside48.dtsi"
 
 &i2c0 {
