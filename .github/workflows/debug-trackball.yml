@@ -1,0 +1,35 @@
+name: debug-trackball
+
+on:
+  workflow_dispatch: {}   # run it manually from the Actions tab
+
+jobs:
+  debug-wired-half:
+    runs-on: ubuntu-latest
+    container: ghcr.io/zmkfirmware/zmk-build:stable
+
+    steps:
+      - name: Checkout your config repo
+        uses: actions/checkout@v4
+
+      - name: West init + update
+        run: |
+          west init -l config
+          west update
+          west list -f '{name:12} {revision:10} {path}\n'
+
+      # ⬇️ Build ONLY the half that physically has the trackball.
+      # Change "right" to "left" if needed.
+      - name: Build wired half (debug)
+        run: |
+          west build -p -s zmk/app -b nice_nano_v2 -- -DSHIELD=hillside48_right
+          cp build/zephyr/zephyr.dts zephyr-right.dts || true
+          cp build/zephyr/zephyr.log zephyr-right.log || true
+
+      - name: Upload debug artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wired-half-debug
+          path: |
+            zephyr-right.dts
+            zephyr-right.log
