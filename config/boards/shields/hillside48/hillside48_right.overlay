@@ -52,7 +52,7 @@
          * led-red = <0>; led-green = <0>; led-blue = <0>;
          */
     };
-}
+};
 
 /* === Listener: connects the device into ZMK's pointer pipeline === */
 / {
@@ -60,7 +60,7 @@
         compatible = "zmk,input-listener";
         device = <&trackball_pim447>;
     };
-}
+};
 
 &trackball_listener {
     /* Always-on gain: 3/2 = 1.5× speed (tweak later) */
@@ -79,4 +79,4 @@
         process-next;
     };
     */
-}
+};
