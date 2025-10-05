@@ -1,37 +1,6 @@
-/*
- * Copyright (c) 2021 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
+// Minimal overlay to prove PIM447 works on i2c0
 #include "hillside48.dtsi"
-#include <dt-bindings/zmk/input_transform.h>
-#include <input/processors.dtsi>
 
-
-
-&default_transform {
-    col-offset = <6>;
-};
-
-&kscan0 {
-    col-gpios
-        = <&pro_micro 10 GPIO_ACTIVE_HIGH> // col5 in the schematic
-        , <&pro_micro 16 GPIO_ACTIVE_HIGH> // col4 in the schematic
-        , <&pro_micro 14 GPIO_ACTIVE_HIGH> // col3 in the schematic
-        , <&pro_micro 15 GPIO_ACTIVE_HIGH> // col2 in the schematic
-        , <&pro_micro 18 GPIO_ACTIVE_HIGH> // col1 in the schematic
-        , <&pro_micro 19 GPIO_ACTIVE_HIGH> // col0 in the schematic
-        ;
-};
-
-&right_encoder {
-    status = "okay";
-};
-
-/* === Pimoroni PIM447 on I²C (default address 0x0A) ===
- * If this doesn't probe, change &i2c0 -> &i2c1 and rebuild.
- */
 &i2c0 {
     status = "okay";
 
@@ -39,47 +8,23 @@
         compatible = "pimoroni,trackball_pim447";
         reg = <0x0A>;
         label = "PIM447";
-        led-red = <64>; led-green = <0>; led-blue = <0>;  // init LED proof
 
-        /* Tuning — start conservative; we can adjust after first flash */
-        sensitivity = <64>;     /* device internal sensitivity (0–255 typical) */
-        move-factor = <2>;      /* multiplies X/Y motion */
-        scroll-factor = <1>;    /* used by XY->scroll mapper if you enable it */
+        /* Make the module light up at boot = driver probed + I²C OK */
+        led-red = <64>;
+        led-green = <0>;
+        led-blue = <0>;
 
-        /* Uncomment if your physical mounting ends up mirrored:
-         * invert-x;
-         * invert-y;
-         */
-
-        /* Optional: onboard RGB control (keep off at first)
-         * led-red = <0>; led-green = <0>; led-blue = <0>;
-         */
+        /* Conservative motion settings; we can tune later */
+        sensitivity = <64>;
+        move-factor = <2>;
+        scroll-factor = <1>;
     };
 };
 
-/* === Listener: connects the device into ZMK's pointer pipeline === */
-/ {
+/* Minimal listener: raw motion -> HID (no processors) */
+&{/} {
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_pim447>;
     };
-};
-
-&trackball_listener {
-    /* Always-on gain: 3/2 = 1.5× speed (tweak later) */
-    input-processors = <&zip_xy_scaler 3 2>;
-
-    scroller {
-        layers = <3>;  /* hold/activate your layer 3 to scroll */
-        input-processors = <&zip_xy_to_scroll_mapper>;
-        process-next;
-    };
-
-    /* Example: invert Y only while on layer 4
-    inverted {
-        layers = <4>;
-        input-processors = <ZMK_INPUT_TRANSFORM(INPUT_TRANSFORM_Y_INVERT)>;
-        process-next;
-    };
-    */
-};
+}
