@@ -10,5 +10,6 @@ manifest:
     - name: pim447
       url: https://github.com/mwandzik/zmk-driver-pim447
       revision: master
+      path: modules/pim447
   self:
     path: config
