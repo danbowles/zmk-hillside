@@ -81,7 +81,7 @@
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
-        device = <&trackball_pim447>;
+        device = <&trackball>;
     };
 
     right_split_device {
