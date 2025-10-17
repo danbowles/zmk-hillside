@@ -50,7 +50,7 @@
     button = <0>;         
     // swap-axes;           
     poll-interval = <20>; 
-    power-layer = <NUM_L>;
+    power-layer = <1>;
     idle-timeout = <60>;  
   };
 };
