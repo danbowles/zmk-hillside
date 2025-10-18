@@ -27,30 +27,33 @@
 };
 
 &i2c0 {
-  status = "okay";
+    status = "okay";
 
-  trackball_pim447@a {
-    compatible = "pimoroni,trackball_pim447";
-    reg = <0xa>;
-    label = "TRACKBALL_PIM447";
-    mode = <PIM447_MOVE>;
-    move-factor-x = <100>;
-    move-factor-y = <100>;
-    move-inertia-x = <66>;
-    move-inertia-y = <66>;
-    norm = <PIM447_NORM_MAX>; 
-    exactness = <4>;      
-    max-accel = <100>;    
-    // invert-move-x;        
-    // invert-move-y;        
-    scroll-divisor-x = <1>;      
-    scroll-divisor-y = <1>;      
-    invert-scroll-x;      
-    invert-scroll-y;      
-    button = <0>;         
-    // swap-axes;           
-    poll-interval = <20>; 
-    power-layer = <0>;
-    idle-timeout = <60>;  
-  };
+    /* Label: trackball_pim447  |  Node name: trackball@0a  */
+    trackball_pim447: trackball@0a {
+        compatible = "pimoroni,trackball_pim447";
+        reg = <0x0a>;
+        label = "TRACKBALL_PIM447";
+
+        /* If your fork provides enum header, keep it; otherwise use numbers (see note) */
+        mode = <PIM447_MOVE>;          /* or <0> if the header isn’t found */
+        move-factor-x = <100>;
+        move-factor-y = <100>;
+        move-inertia-x = <66>;
+        move-inertia-y = <66>;
+        norm = <PIM447_NORM_MAX>;      /* or <1> if no header */
+        exactness = <4>;
+        max-accel = <100>;
+        /* invert-move-x; */
+        /* invert-move-y; */
+        scroll-divisor-x = <1>;
+        scroll-divisor-y = <1>;
+        invert-scroll-x;
+        invert-scroll-y;
+        button = <0>;
+        /* swap-axes; */
+        poll-interval = <20>;
+        power-layer = <0>;
+        idle-timeout = <60>;
+    };
 };
