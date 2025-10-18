@@ -41,6 +41,13 @@
                 };
         };
 
+        sensors {
+                pim447_sensor: pim447_sensor {
+                        label = "PIM447_SENSOR";
+                        device = <&trackball_pim447>;  /* label from your overlay's trackball@0a */
+                };
+        };
+
         keymap {
                 compatible = "zmk,keymap";
 
