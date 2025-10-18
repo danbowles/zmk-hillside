@@ -26,7 +26,7 @@
     status = "okay";
 };
 
-&pro_micro_i2c {
+&i2c0 {
   status = "okay";
 
   trackball_pim447@a {
