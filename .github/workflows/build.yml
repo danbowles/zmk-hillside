@@ -3,3 +3,7 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      # This tells the unified workflow where to find your files
+      build_config_path: "."
+      config_path: "config"
