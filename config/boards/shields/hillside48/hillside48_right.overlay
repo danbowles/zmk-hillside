@@ -5,7 +5,7 @@
  */
 
 #include "hillside48.dtsi"
-#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <dt-bindings/zmk/input_transform.h>
 
 &default_transform {
     col-offset = <6>;
@@ -47,10 +47,8 @@
         compatible = "zmk,input-listener";
         device = <&trackball_pim447>;
         input-processors = <
-            &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)
-            &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
-            &zip_scroll_transform (INPUT_TRANSFORM_XY_SWAP)
-            &zip_scroll_transform (INPUT_TRANSFORM_X_INVERT)
+            &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)
+            &zip_scroll_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)
         >;
     };
 };
