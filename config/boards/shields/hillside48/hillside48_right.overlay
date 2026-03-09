@@ -4,7 +4,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "hillside48.dtsi" 
+#include "hillside48.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &default_transform {
     col-offset = <6>;
@@ -23,4 +24,30 @@
 
 &right_encoder {
     status = "okay";
+};
+
+&pro_micro_i2c {
+    status = "okay";
+    clock-frequency = <I2C_BITRATE_STANDARD>;
+
+    trackball_pim447: trackball@a {
+        compatible = "pimoroni,trackball_pim447";
+        reg = <0x0A>;
+        sensitivity = <255>;
+        move-factor = <5>;
+        scroll-factor = <1>;
+        led-red = <0>;
+        led-green = <0>;
+        led-blue = <255>;
+    };
+};
+
+&trackball_split {
+    device = <&trackball_pim447>;
+    input-processors = <
+        &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP)
+        &zip_xy_transform (INPUT_TRANSFORM_X_INVERT)
+        &zip_scroll_transform (INPUT_TRANSFORM_XY_SWAP)
+        &zip_scroll_transform (INPUT_TRANSFORM_X_INVERT)
+    >;
 };
