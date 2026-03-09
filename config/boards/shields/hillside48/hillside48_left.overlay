@@ -20,8 +20,3 @@
 &left_encoder {
     status = "okay";
 };
-
-&trackball_listener {
-    status = "okay";
-    input-processors = <&zip_xy_scaler 10 1>;
-};
