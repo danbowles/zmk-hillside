@@ -29,7 +29,7 @@
     status = "okay";
     clock-frequency = <I2C_BITRATE_STANDARD>;
 
-    trackball_pim447: trackball@a {
+    trackball_pim447: trackball@b {
         compatible = "pimoroni,trackball_pim447";
         reg = <0x0B>;
         sensitivity = <255>;
