@@ -50,5 +50,10 @@
         compatible = "zmk,input-listener";
         device = <&trackball_pim447>;
         input-processors = <&zip_xy_scaler 5 1>;
+
+        scroller {
+            layers = <3>;  // replace with whichever layer number you want to trigger scroll
+            input-processors = <&zip_xy_to_scroll_mapper>;
+        };
     };
 };
