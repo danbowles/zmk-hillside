@@ -8,6 +8,9 @@
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+#define MOUSE_L  4
+#define SCROLL_L 5
+
 &kscan0 {
     col-gpios
         = <&pro_micro 19 GPIO_ACTIVE_HIGH> // col0 in the schematic
@@ -50,10 +53,10 @@
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_pim447>;
-        input-processors = <&zip_xy_transform 6 &zip_xy_scaler 10 1>;
+        input-processors = <&zip_temp_layer MOUSE_L 500 &zip_xy_transform 6 &zip_xy_scaler 10 1>;
 
         scroller {
-            layers = <3>;  // replace with whichever layer number you want to trigger scroll
+            layers = <SCROLL_L>;
             input-processors = <
                 &zip_xy_to_scroll_mapper
                 &zip_xy_scaler 10 1
