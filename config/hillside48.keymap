@@ -17,6 +17,7 @@
 #define ADJ_L    3
 #define MOUSE_L  4
 #define SCROLL_L 5
+#define SNIPE_L  6
 
 / {
         behaviors {
@@ -106,9 +107,19 @@
  */
                         bindings = <
 &trans &trans &trans &trans &trans &trans                                   &trans    &trans    &trans    &trans &trans &trans
-&trans &trans &trans &trans &trans &trans                                   &trans    &mkp LCLK &mkp MCLK &mkp RCLK &trans &trans
+&trans &trans &trans &trans &trans &trans                                   &mo SNIPE_L &mkp LCLK &mkp MCLK &mkp RCLK &trans &trans
 &trans &trans &trans &trans &trans &trans &trans                     &trans &trans    &trans    &trans    &trans &trans &trans
               &trans        &trans &trans &trans &trans       &trans &trans &trans    &trans            &trans
+                        >;
+                };
+
+                snipe_layer {
+/* SNIPE - low multiplier for precision cursor movement */
+                        bindings = <
+&trans &trans &trans &trans &trans &trans                                   &trans &trans     &trans     &trans    &trans &trans
+&trans &trans &trans &trans &trans &trans                                   &trans &mkp LCLK &mkp MCLK &mkp RCLK &trans &trans
+&trans &trans &trans &trans &trans &trans &trans                     &trans &trans &trans     &trans     &trans    &trans &trans
+              &trans        &trans &trans &trans &trans       &trans &trans &trans &trans               &trans
                         >;
                 };
 

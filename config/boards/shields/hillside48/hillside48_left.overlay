@@ -10,6 +10,7 @@
 
 #define MOUSE_L  4
 #define SCROLL_L 5
+#define SNIPE_L  6
 
 &kscan0 {
     col-gpios
@@ -54,6 +55,11 @@
         compatible = "zmk,input-listener";
         device = <&trackball_pim447>;
         input-processors = <&zip_temp_layer MOUSE_L 500 &zip_xy_transform 6 &zip_xy_scaler 10 1>;
+
+        sniper {
+            layers = <SNIPE_L>;
+            input-processors = <&zip_xy_scaler 1 3>;
+        };
 
         scroller {
             layers = <SCROLL_L>;
